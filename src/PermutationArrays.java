@@ -25,8 +25,8 @@ public class PermutationArrays {
                 case 1:
                     System.out.println("\n== Check if an array is a permutation ==");
                     if(checkPermutation(arrayFromFile()))
-                        System.out.println("== The array is a permutation ==");
-                    else System.out.println("== The array is not a permutation ==");
+                        System.out.println("\n== The array is a permutation ==");
+                    else System.out.println("\n== The array is not a permutation ==");
                     break;
                 case 2:
                     System.out.println("\n== Compute the composition of two arrays ==");
@@ -113,7 +113,6 @@ public class PermutationArrays {
 
                 //Reads first line as array length
                 array = new int[Integer.parseInt(data.nextLine())];
-                data.nextLine();
 
                 //Reads integers from second line into array
                 while(data.hasNextInt()) {
@@ -122,7 +121,7 @@ public class PermutationArrays {
                 }
 
                 //Throws exception if integers < array length
-                if(counter + 1 != array.length)
+                if(counter != array.length)
                     throw new ArrayIndexOutOfBoundsException();
 
                 //Throws exception if file contains extra data
