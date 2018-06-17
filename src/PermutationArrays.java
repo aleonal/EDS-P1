@@ -36,13 +36,19 @@ public class PermutationArrays {
                     continue;
             }
 
+            isValid = true;
             promptContinuation();
-
         }
     }
 
     private static void printMenu() {
-
+        System.out.println("=====================================================================");
+        System.out.println("                                Welcome!\n");
+        System.out.println("1. Check if an array is a permutation");
+        System.out.println("2. Find the composition of two arrays");
+        System.out.println("3. Find the inverse of an array");
+        System.out.println("4. Compute the permutation of an array to a power");
+        System.out.println("=====================================================================");
     }
 
     private static void checkPermutation() {
@@ -62,10 +68,17 @@ public class PermutationArrays {
     }
 
     private static void getIntegerInput() {
-
+        try {
+            choice = Integer.parseInt(input.nextLine());
+        } catch(NumberFormatException e) {
+            choice = Integer.MAX_VALUE;
+        }
     }
 
     private static void promptContinuation() {
-
+        System.out.println("Would you like to check another array or perform another computation? (Y/N)");
+        char continuation = input.nextLine().charAt(0);
+        if(continuation != 'y' && continuation != 'Y')
+            isRunning = false;
     }
 }
