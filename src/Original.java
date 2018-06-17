@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class LabOne {
+public class Original {
     public static void main(String[] args) {
         //Initialize variables used in every case
         Scanner input = new Scanner(System.in);
