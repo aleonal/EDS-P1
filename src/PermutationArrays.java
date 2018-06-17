@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class PermutationArrays {
     private static Scanner input = new Scanner(System.in);
@@ -21,7 +23,10 @@ public class PermutationArrays {
             //Switches between possible cases
             switch(choice) {
                 case 1:
-                    checkPermutation();
+                    System.out.println("\n== Check if an array is a permutation ==");
+                    if(checkPermutation())
+                        System.out.println("\n== The array is a permutation ==");
+                    else System.out.println("\n== The array is not a permutation ==");
                     break;
                 case 2:
                     computeComposition();
@@ -53,7 +58,19 @@ public class PermutationArrays {
         System.out.println("=====================================================================");
     }
 
-    private static void checkPermutation() {
+    private static boolean checkPermutation() {
+        int[] array = arrayFromFile();
+        Set<Integer> set = new HashSet<>();
+
+        //If the array contains duplicate integers, it is not a permutation
+        for(int element: array) {
+            if(set.contains(element))
+                return false;
+
+            set.add(element);
+        }
+
+        return true;
     }
 
     private static void computeComposition() {
