@@ -74,6 +74,46 @@ public class PermutationArrays {
     }
 
     private static void computeComposition() {
+        int[] A;
+        int[] B;
+        int[] composition;
+
+        System.out.println("-- Array A --");
+        while(true) {
+            A = arrayFromFile();
+            if (!checkPermutation(A)) {
+                System.out.println("Specified array is not a permutation. Try another array.");
+                continue;
+            }
+            break;
+        }
+
+        System.out.println("-- Array B --");
+        while(true) {
+            B = arrayFromFile();
+            if (!checkPermutation(B)) {
+                System.out.println("Specified array is not a permutation. Try another array.");
+                continue;
+            }
+            break;
+        }
+
+        if(A.length != B.length) {
+            System.out.println("Array lengths do not match. The composition cannot be computed.");
+        } else {
+            composition = new int[A.length];
+
+            System.out.print("== The composition array is: [");
+            for(int i = 0; i < composition.length; i++) {
+                composition[i] = A[B[i]];
+
+                System.out.print(composition[i]);
+                if(i != composition.length - 1)
+                    System.out.print(" ");
+            }
+            System.out.println("] ==");
+        }
+
 
     }
 
@@ -94,7 +134,7 @@ public class PermutationArrays {
     }
 
     private static void promptContinuation() {
-        System.out.println("Would you like to check another array or perform another computation? (Y/N)");
+        System.out.println("\nWould you like to check another array or perform another computation? (Y/N)");
         char continuation = input.nextLine().charAt(0);
         if(continuation != 'y' && continuation != 'Y')
             isRunning = false;
