@@ -24,11 +24,12 @@ public class PermutationArrays {
             switch(choice) {
                 case 1:
                     System.out.println("\n== Check if an array is a permutation ==");
-                    if(checkPermutation())
-                        System.out.println("\n== The array is a permutation ==");
-                    else System.out.println("\n== The array is not a permutation ==");
+                    if(checkPermutation(arrayFromFile()))
+                        System.out.println("== The array is a permutation ==");
+                    else System.out.println("== The array is not a permutation ==");
                     break;
                 case 2:
+                    System.out.println("\n== Compute the composition of two arrays ==");
                     computeComposition();
                     break;
                 case 3:
@@ -58,8 +59,7 @@ public class PermutationArrays {
         System.out.println("=====================================================================");
     }
 
-    private static boolean checkPermutation() {
-        int[] array = arrayFromFile();
+    private static boolean checkPermutation(int[] array) {
         Set<Integer> set = new HashSet<>();
 
         //If the array contains duplicate integers, it is not a permutation
