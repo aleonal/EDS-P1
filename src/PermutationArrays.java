@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class PermutationArrays {
@@ -52,7 +54,6 @@ public class PermutationArrays {
     }
 
     private static void checkPermutation() {
-
     }
 
     private static void computeComposition() {
@@ -80,5 +81,45 @@ public class PermutationArrays {
         char continuation = input.nextLine().charAt(0);
         if(continuation != 'y' && continuation != 'Y')
             isRunning = false;
+        else System.out.println();
+    }
+
+    private static int[] arrayFromFile() {
+        int[] array;
+
+        while(true) {
+            System.out.print("Enter filename (root is project folder): ");
+            try {
+                File file = new File(input.nextLine());
+                Scanner data = new Scanner(file);
+                int counter = 0;
+
+                //Reads first line as array length
+                array = new int[Integer.parseInt(data.nextLine())];
+                data.nextLine();
+
+                //Reads integers from second line into array
+                while(data.hasNextInt()) {
+                    array[counter] = data.nextInt();
+                    counter++;
+                }
+
+                //Throws exception if amount of integers does not equal array length
+                if(counter + 1 != array.length)
+                    throw new NumberFormatException();
+
+                //Throws exception if file contains more data
+                if(data.hasNextLine())
+                    throw new NumberFormatException();
+
+                break;
+            } catch(FileNotFoundException f) {
+                System.out.println("File not found...");
+            } catch(NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                System.out.println("File is corrupt... please try another file.");
+            }
+        }
+
+        return array;
     }
 }
