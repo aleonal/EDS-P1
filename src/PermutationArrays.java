@@ -121,19 +121,21 @@ public class PermutationArrays {
                     counter++;
                 }
 
-                //Throws exception if amount of integers does not equal array length
+                //Throws exception if integers < array length
                 if(counter + 1 != array.length)
-                    throw new NumberFormatException();
+                    throw new ArrayIndexOutOfBoundsException();
 
-                //Throws exception if file contains more data
+                //Throws exception if file contains extra data
                 if(data.hasNextLine())
                     throw new NumberFormatException();
 
                 break;
             } catch(FileNotFoundException f) {
                 System.out.println("File not found...");
-            } catch(NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            } catch(NumberFormatException a) {
                 System.out.println("File is corrupt... please try another file.");
+            } catch(ArrayIndexOutOfBoundsException e) {
+                System.out.println("Array length does not equal integer amount... please try another file.");
             }
         }
 
