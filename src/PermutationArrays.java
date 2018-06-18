@@ -30,7 +30,7 @@ public class PermutationArrays {
                     break;
                 case 2:
                     System.out.println("\n== Compute the composition of two arrays ==");
-                    computeComposition();
+                    computeCompositionHelper();
                     break;
                 case 3:
                     System.out.println("\n== Compute the inverse of an array ==");
@@ -75,7 +75,7 @@ public class PermutationArrays {
         return true;
     }
 
-    private static void computeComposition() {
+    private static void computeCompositionHelper() {
         int[] A;
         int[] B;
         int[] composition;
@@ -103,18 +103,24 @@ public class PermutationArrays {
         if(A.length != B.length) {
             System.out.println("Array lengths do not match. The composition cannot be computed.");
         } else {
-            composition = new int[A.length];
+            composition = computeComposition(A, B);
 
             System.out.print("== The composition array is: [");
             for(int i = 0; i < composition.length; i++) {
-                composition[i] = A[B[i]];
-
                 System.out.print(composition[i]);
                 if(i != composition.length - 1)
                     System.out.print(" ");
             }
-            System.out.println("] ==");
         }
+    }
+
+    private static int[] computeComposition(int[] A, int[] B) {
+        int[] composition = new int[A.length];
+
+        for(int i = 0; i < composition.length; i++)
+            composition[i] = A[B[i]];
+
+        return composition;
     }
 
     private static void computeInverse() {
