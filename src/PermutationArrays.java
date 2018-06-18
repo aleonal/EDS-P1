@@ -33,9 +33,11 @@ public class PermutationArrays {
                     computeComposition();
                     break;
                 case 3:
+                    System.out.println("\n== Compute the inverse of an array ==");
                     computeInverse();
                     break;
                 case 4:
+                    System.out.println("\n== Compute the composition of an array to itself, n times ==");
                     computePower();
                     break;
                 default:
@@ -55,7 +57,7 @@ public class PermutationArrays {
         System.out.println("1. Check if an array is a permutation");
         System.out.println("2. Find the composition of two arrays");
         System.out.println("3. Find the inverse of an array");
-        System.out.println("4. Compute the permutation of an array to a power");
+        System.out.println("4. Compute the permutation of an array to itself, n times");
         System.out.println("=====================================================================");
     }
 
@@ -113,12 +115,28 @@ public class PermutationArrays {
             }
             System.out.println("] ==");
         }
-
-
     }
 
     private static void computeInverse() {
+        int[] array;
 
+        while(true) {
+            array = arrayFromFile();
+            if (!checkPermutation(array)) {
+                System.out.println("Specified array is not a permutation. Try another array.");
+                continue;
+            }
+            break;
+        }
+
+        System.out.print("== The inverse array is: [");
+        for(int i = 0; i < array.length; i++) {
+            System.out.print(array[array[i]]);
+
+            if (i != array.length - 1)
+                System.out.print(" ");
+        }
+        System.out.println("] ==");
     }
 
     private static void computePower() {
