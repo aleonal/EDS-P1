@@ -146,7 +146,25 @@ public class PermutationArrays {
     }
 
     private static void computePower() {
+        int[] A;
 
+        while(true) {
+            A = arrayFromFile();
+            if (!checkPermutation(A)) {
+                System.out.println("Specified array is not a permutation. Try another array.");
+                continue;
+            }
+            break;
+        }
+
+        while(true) {
+            System.out.println("To what power would you like to compute the composition? (integer): ");
+            if(choice == Integer.MAX_VALUE) {
+                System.out.println("Input is not an integer.");
+                continue;
+            }
+            break;
+        }
     }
 
     private static void getIntegerInput() {
