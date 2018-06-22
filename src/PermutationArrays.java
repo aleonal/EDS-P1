@@ -34,7 +34,27 @@ public class PermutationArrays {
                     break;
                 case 3:
                     System.out.println("\n== Compute the inverse of an array ==");
-                    computeInverse();
+
+                    //Array is retrieved here in order to generalize inverse algorithm
+                    int[] array;
+                    while(true) {
+                        array = arrayFromFile();
+                        if (!checkPermutation(array)) {
+                            System.out.println("Specified array is not a permutation. Try another array.");
+                            continue;
+                        }
+                        break;
+                    }
+                    array = computeInverse(array);
+
+                    System.out.print("== The inverse array is: [");
+                    for(int i = 0; i < array.length; i++) {
+                        System.out.print(array[i]);
+                        if (i != array.length - 1)
+                            System.out.print(" ");
+                    }
+                    System.out.println("] ==");
+
                     break;
                 case 4:
                     System.out.println("\n== Compute the composition of an array to itself, n times ==");
@@ -123,26 +143,14 @@ public class PermutationArrays {
         return composition;
     }
 
-    private static void computeInverse() {
-        int[] array;
+    private static int[] computeInverse(int[] array) {
+        int[] inverse = new int[array.length];
 
-        while(true) {
-            array = arrayFromFile();
-            if (!checkPermutation(array)) {
-                System.out.println("Specified array is not a permutation. Try another array.");
-                continue;
-            }
-            break;
-        }
-
-        System.out.print("== The inverse array is: [");
         for(int i = 0; i < array.length; i++) {
-            System.out.print(array[array[i]]);
-
-            if (i != array.length - 1)
-                System.out.print(" ");
+            inverse[i] = array[array[i]];
         }
-        System.out.println("] ==");
+
+        return inverse;
     }
 
     private static void computePower() {
