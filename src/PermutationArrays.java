@@ -155,6 +155,7 @@ public class PermutationArrays {
 
     private static void computePower() {
         int[] A;
+        int[] B;
 
         while(true) {
             A = arrayFromFile();
@@ -173,6 +174,34 @@ public class PermutationArrays {
             }
             break;
         }
+
+        //Determines whether power is negative or positive; computes respective compositions
+        if(choice < 0) {
+            A = computeInverse(A);
+            B = new int[A.length];
+
+            for(int i = 0; i < A.length; i++)
+                B[i] = A[i];
+
+            for(int i = -1; i > choice; i--)
+                B = computeComposition(A, B);
+        } else {
+            B = new int[A.length];
+
+            for(int i = 0; i < A.length; i++)
+                B[i] = A[i];
+
+            for(int i = 1; i < choice; i++)
+                B = computeComposition(A, B);
+        }
+
+        System.out.print("== The composition of the array to itself " + choice + "times is: [");
+        for(int i = 0; i < B.length; i++) {
+            System.out.print(B[i]);
+            if (i != B.length - 1)
+                System.out.print(" ");
+        }
+        System.out.println("] ==");
     }
 
     private static void getIntegerInput() {
